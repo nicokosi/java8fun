@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 
 import static java.lang.System.out;
 
-public final class PrimeGenerator {
+public final class PrimeNumbers {
 
     static int[] primeNumbers_declarative(final int max) {
 
