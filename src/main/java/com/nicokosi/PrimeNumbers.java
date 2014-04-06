@@ -23,33 +23,35 @@ public final class PrimeNumbers {
 
         // init potential primes
         final List<PotentialPrime> potentialPrimes = new ArrayList<PotentialPrime>(max);
-        IntStream.range(2, max).forEachOrdered(
+        IntStream.range(0, max).forEachOrdered(
                 i -> potentialPrimes.add(new PotentialPrime(i)));
 
         // mark not-primes, iteratively
         potentialPrimes.stream()
+                .filter(p -> p.number > 1 && p.number < Math.sqrt(max))
                 .forEach(p -> {
-                            final int i = p.number;
-                            int n = 0;
-                            for (int j = i * i; j < potentialPrimes.size(); j = i * i + n * i) {
-                                potentialPrimes.get(j).isPrime = false;
-                                n++;
-                            }
-                        }
-                );
+                    final int i = p.number;
+                    int n = 0;
+                    for (int j = i * i; j < potentialPrimes.size(); j = i * i + n * i) {
+                        potentialPrimes.get(j).isPrime = false;
+                        n++;
+                    }
+                });
 
         // filter primes
         return potentialPrimes.stream()
-                .filter(p -> p.isPrime)
+                .filter(p -> p.isPrime && p.number > 1)
                 .mapToInt(p -> p.number)
                 .toArray();
     }
 
     static int[] primeNumbers_imperative(final int max) {
+
         // init array for potential primes
         boolean potentialPrimes[] = new boolean[max];
         for (int a = 0; a < max; a++)
             potentialPrimes[a] = true;
+
         // mark not-primes, iteratively
         for (int i = 2; i < Math.sqrt(max); i++) {
             if (potentialPrimes[i]) {
