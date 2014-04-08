@@ -1,48 +1,51 @@
 package com.nicokosi;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static java.lang.System.out;
-
 public final class PrimeNumbersDeclarative {
+
+    final static class PotentialPrime {
+        private final int number;
+        private boolean isPrime;
+
+        PotentialPrime(final int n) {
+            number = n;
+            isPrime = true;
+        }
+    }
 
     static int[] primeNumbers_declarative(final int max) {
 
-        final class PotentialPrime {
-            private final int number;
-            private boolean isPrime;
-
-            PotentialPrime(final int n) {
-                number = n;
-                isPrime = true;
-            }
-        }
-
         // init potential primes
-        final List<PotentialPrime> potentialPrimes = new ArrayList<PotentialPrime>(max);
+        final List<PotentialPrime> potentialPrimes = new ArrayList<>(max);
         IntStream.range(0, max).forEachOrdered(
                 i -> potentialPrimes.add(new PotentialPrime(i)));
 
         // mark not-primes, iteratively
         potentialPrimes.stream()
                 .filter(p -> p.number > 1 && p.number < Math.sqrt(max))
-                .forEach(p -> {
-                    final int i = p.number;
-                    int n = 0;
-                    for (int j = i * i; j < potentialPrimes.size(); j = i * i + n * i) {
-                        potentialPrimes.get(j).isPrime = false;
-                        n++;
-                    }
-                });
+                .forEach(p -> markNotPrimes(p, potentialPrimes));
 
         // filter primes
         return potentialPrimes.stream()
-                .filter(p -> p.isPrime && p.number > 1)
+                .filter(PrimeNumbersDeclarative::primesAbove1)
                 .mapToInt(p -> p.number)
                 .toArray();
+    }
+
+    private static boolean primesAbove1(final PotentialPrime p) {
+        return p.isPrime && p.number > 1;
+    }
+
+    private static void markNotPrimes(final PotentialPrime p, final List<PotentialPrime> potentialPrimes) {
+        final int i = p.number;
+        int n = 0;
+        for (int j = i * i; j < potentialPrimes.size(); j = i * i + n * i) {
+            potentialPrimes.get(j).isPrime = false;
+            n++;
+        }
     }
 
 }
