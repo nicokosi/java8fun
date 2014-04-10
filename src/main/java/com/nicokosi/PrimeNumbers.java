@@ -1,9 +1,6 @@
 package com.nicokosi;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.IntStream;
 
 import static com.nicokosi.PrimeNumbersDeclarative.primeNumbers_declarative;
 import static com.nicokosi.PrimeNumbersImperative.primeNumbers_imperative;

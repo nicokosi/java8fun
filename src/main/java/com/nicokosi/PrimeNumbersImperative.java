@@ -1,12 +1,5 @@
 package com.nicokosi;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.IntStream;
-
-import static java.lang.System.out;
-
 public final class PrimeNumbersImperative {
 
     static int[] primeNumbers_imperative(final int max) {
