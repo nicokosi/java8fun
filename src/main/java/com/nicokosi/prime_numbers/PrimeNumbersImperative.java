@@ -1,4 +1,4 @@
-package com.nicokosi;
+package com.nicokosi.prime_numbers;
 
 public final class PrimeNumbersImperative {
 

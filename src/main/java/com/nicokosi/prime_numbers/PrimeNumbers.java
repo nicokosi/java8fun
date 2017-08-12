@@ -1,9 +1,9 @@
-package com.nicokosi;
+package com.nicokosi.prime_numbers;
 
 import java.util.Arrays;
 
-import static com.nicokosi.PrimeNumbersDeclarative.primeNumbers_declarative;
-import static com.nicokosi.PrimeNumbersImperative.primeNumbers_imperative;
+import static com.nicokosi.prime_numbers.PrimeNumbersDeclarative.primeNumbers_declarative;
+import static com.nicokosi.prime_numbers.PrimeNumbersImperative.primeNumbers_imperative;
 import static java.lang.System.out;
 
 public final class PrimeNumbers {

@@ -1,4 +1,4 @@
-package com.nicokosi;
+package com.nicokosi.prime_numbers;
 
 import java.util.ArrayList;
 import java.util.List;
